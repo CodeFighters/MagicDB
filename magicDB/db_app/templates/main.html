@@ -1,3 +1,30 @@
-<h1>Welcome, {{ user.username }}</h1>
+<html>
+  <head>
+    <title>Magic Online Database</title>
+  </head>
 
-<p><a href="{% url 'logout' %}">Logout here</a></p>
+  <body>
+  <h1>Welcome, {{ user.username }}</h1>
+
+  <p><a href="{% url 'logout' %}">Logout here</a></p>
+  
+  <form method="POST" action="{% url 'main2' %}">
+      {% csrf_token %}
+    <div>
+      Please, select a project:
+      <select>
+        <option id="task_manager" value="task_manager">Task Manager</option>
+        <option id="tv_series" value="tv_series">TV Series Manager</option>
+        <option id="back_up_plan" value="back_up_plan">Site Back Up Plan</option>
+        <option id="groceries_list" value="groceries_list">Groceries List</option>
+        <option id="to_do_list" value="to_do_list">To Do List</option>
+      </select>
+    </div>
+    <input type="submit" value="Select a project" />
+  </form>
+  <p>
+  <div>
+    You have the following projects:
+  </div>
+  </body>
+</html>

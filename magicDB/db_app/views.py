@@ -34,6 +34,10 @@ def main(request):
     return render(request, "main.html", locals())
 
 
+def main2(request):
+    return render(request, "main2.html", locals())
+
+
 def _validate_register(username, email, password):
     if username is None or username.strip() == "":
         return False
