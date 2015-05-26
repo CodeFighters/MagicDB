@@ -34,8 +34,16 @@ def main(request):
     return render(request, "main.html", locals())
 
 
-def main2(request):
-    return render(request, "main2.html", locals())
+def todo(request):
+    return render(request, "todo.html", locals())
+
+
+def tvseries(request):
+    return render(request, "tvseries.html", locals())
+
+
+def groceries(request):
+    return render(request, "groceries.html", locals())
 
 
 def _validate_register(username, email, password):
