@@ -1,6 +1,6 @@
-# MagicDB
+# DjangoGirls
 
-A great online database system + "Who wants to be a millionaire!"
 
-More information here:
-https://hackpad.com/Magic-DataBase-9BgqJSDmgOq
+The code from http://djangogirls.org/
+Here are the instructions:
+https://github.com/djangogirls/tutorial
