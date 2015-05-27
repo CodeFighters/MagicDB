@@ -1,6 +1,2 @@
-# DjangoGirls
-
-
-The code from http://djangogirls.org/
-Here are the instructions:
-https://github.com/djangogirls/tutorial
+# These are the steps to make the code run:
+(.) 
