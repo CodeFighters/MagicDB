@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="title">Movies</h1>
+    <div>
+        <form method = "POST" action="{% url 'tvseries' %}">
+        {% csrf_token %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                      <th>movie</th>
+                      <th>episode</th>
+                      <th>watched</th>
+                      <th>submit</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name = movie>
+                        </td>
+                        <td>
+                            <input type="text" name = episode>
+                        </td>
+                        <td>
+                            <input type="radio" name="watched" value = "1"> Yes <br>
+                            <input type="radio" name="watched" value = "0"> No </td>
+                        </td>
+                        <td>
+                            <input class="btn btn-primary" type="submit" value="Add">
+                        </td>
+                    </tr>
+
+                </thead>
+
+            </table>
+        </form>
+        </div>
+    <div>
+        <form method = "GET" action="{% url 'tvseries' %}">
+            <table class="table table-bordered">
+            	    <thead>
+            		  <tr>
+                        <th>remove</th>
+            		    <th>movie</th>
+                        <th>episode</th>
+                        <th>watched</th>
+            		  </tr>
+            		</thead>
+                {% for movie in tv %}
+                    <tr>
+                        <td>
+                            <input type="radio" name = "target" value = {{ movie.id }}>
+                        </td>
+                        <td>
+                            {{ movie.movie}}
+                        </td>
+                        <td>
+                            {{ movie.episode }}
+                        </td>
+                        <td>
+                            {{ movie.watched }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+            <div align="right">
+        	   <input type = "submit" class="btn btn-primary" value = "DELETE"/>
+            </div>
+        </form>
+
+{% endblock %}
