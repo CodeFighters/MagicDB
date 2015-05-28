@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  </head>
+  <body>
+  <h2>Create new list:</h2>
+    <form action="/list/" method="POST">
+      {% csrf_token %}
+      {{ list_form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+  <h2>Here are your lists:</h2>
+  {% for list in all_lists %}
+    <a href="{% url 'groceries' list.name %}">
+      <p>{{ list.name }}</p>
+    </a>
+    
+  {% endfor %}
+
+  </body>
+</html>

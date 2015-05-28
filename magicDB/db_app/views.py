@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .forms import GroceriesForm, ListsForm
+from .models import Lists, Groceries
 
 
 def main_logout(request):
@@ -42,8 +44,58 @@ def tvseries(request):
     return render(request, "tvseries.html", locals())
 
 
-def groceries(request):
+def groceries(request, list_name):
+    print(list_name)
+    list_obj = Lists.objects.get(name=list_name)
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        groceries_form = GroceriesForm(request.POST)
+        # check whether it's valid:
+        if groceries_form.is_valid():
+            # process the data in form.cleaned_data as required
+            grocery_name = groceries_form.cleaned_data['name']
+            grocery_quantity = groceries_form.cleaned_data['quantity']
+            grocery_measurement = groceries_form.cleaned_data['measurement']
+            grocery_is_bought = groceries_form.cleaned_data['is_bought']
+            grocery = Groceries(
+                name=grocery_name,
+                list_name=list_obj,
+                quantity=grocery_quantity,
+                measurement=grocery_measurement,
+                is_bought=grocery_is_bought
+            )
+            grocery.save()
+            # redirect to a new URL:
+            return HttpResponseRedirect('/list/{}/'.format(list_obj.name))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        groceries_form = GroceriesForm()
+        groceries_for_list = Groceries.objects.filter(list_name=list_obj.id)
     return render(request, "groceries.html", locals())
+
+
+def show_lists(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        list_form = ListsForm(request.POST)
+        # check whether it's valid:
+        if list_form.is_valid():
+            # process the data in form.cleaned_data as required
+
+            list_name = list_form.cleaned_data['name']
+            new_list = Lists(name=list_name)
+            new_list.save()
+
+            # ...
+            # redirect to a new URL:
+            return HttpResponseRedirect('/list/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        list_form = ListsForm()
+        all_lists = Lists.objects.all()
+    return render(request, "lists.html", locals())    
 
 
 def _validate_register(username, email, password):

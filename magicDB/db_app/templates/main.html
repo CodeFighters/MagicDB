@@ -1,21 +1,30 @@
-<html>
-  <head>
-    <title>Magic Online Database</title>
-  </head>
+{% extends "base.html" %}
 
-  <body>
-  <h1>Welcome, {{ user.username }}</h1>
+  {% block content %}
 
-  <p><a href="{% url 'logout' %}">Logout here</a></p>
-  <p> 
-  </p>
-  <a href="{% url 'todo' %}">TO Do</a><p>
-  <a href="{% url 'tvseries' %}">Tv Series</a><p>
-  <a href="{% url 'groceries' %}">Groceries</a><p>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome, {{ user.username }}</h1>
+        <h2>You may are interested in these projects</h2>
+      </div>
+    </div>
 
-
-  <div>
-    You have the following projects:
-  </div>
-  </body>
-</html>
+<div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>TO Do</h2>
+          <p><a class="btn btn-default" href="{% url 'todo' %}" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Tv Series</h2>
+          <p><a class="btn btn-default" href="{% url 'tvseries' %}" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Lists of groceries</h2>
+          <p><a class="btn btn-default" href="{% url 'show_lists' %}" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+    
+  {% endblock content %}
