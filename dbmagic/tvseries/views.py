@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from tvseries import models
+from django.contrib.auth.models import User
 
 
 def add_to_db(movie, episode, watched=False):

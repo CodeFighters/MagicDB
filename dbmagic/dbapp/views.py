@@ -34,6 +34,14 @@ def main(request):
     return render(request, "main.html", locals())
 
 
+def todo(request):
+    return render(request, "todo.html", locals())
+
+
+def tvseries(request):
+    return render(request, "tvseries.html", locals())
+
+
 def _validate_register(username, email, password):
     if username is None or username.strip() == "":
         return False

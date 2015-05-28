@@ -19,9 +19,12 @@ import tvseries.views
 import dbapp.views
 
 urlpatterns = [
-    url(r"^$", dbapp.views.register, name="register"),
+    url(r"^register/", dbapp.views.register, name="register"),
     url(r"^main/", dbapp.views.main, name="main"),
-    url(r"^db/$", dbapp.views.index, name="index"),
+    url(r"^$", dbapp.views.index, name="index"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tvseries/$', tvseries.views.index, name="tvseries"),
+    url(r"^logout/$", dbapp.views.main_logout, name="logout"),
+    url(r"^todo/", dbapp.views.todo, name="todo"),
+    url(r"^groceries/", dbapp.views.todo, name="groceries"),
 ]
