@@ -10,10 +10,13 @@ class ListsForm(forms.ModelForm):
 	class Meta:
 		model = Lists
 		fields = '__all__'
+		widgets = {
+			'name': forms.TextInput(attrs={'class': 'form-group'})
+		}
 
 
 class GroceriesForm(forms.ModelForm):
 
     class Meta:
         model = Groceries
-        fields = ['name', 'quantity', 'measurement', 'is_bought']
+        fields = ['name', 'quantity', 'measurement']

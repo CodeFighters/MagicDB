@@ -62,7 +62,7 @@ def groceries(request, list_name):
                 list_name=list_obj,
                 quantity=grocery_quantity,
                 measurement=grocery_measurement,
-                is_bought=grocery_is_bought
+                is_bought=False
             )
             grocery.save()
             # redirect to a new URL:

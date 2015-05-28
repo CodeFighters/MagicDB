@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'db_app',
+    # 'django_extensions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,4 +103,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,  'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+print(STATIC_URL)
+print(STATIC_ROOT)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static/"),
+)
+print(STATICFILES_DIRS)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)

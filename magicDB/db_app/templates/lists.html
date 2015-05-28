@@ -1,24 +1,34 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
+  {% block content %}
 
-<head>
-
-  </head>
-  <body>
-  <h2>Create new list:</h2>
-    <form action="/list/" method="POST">
-      {% csrf_token %}
-      {{ list_form.as_p }}
-      <input type="submit" value="Submit" />
-    </form>
-  <h2>Here are your lists:</h2>
-  {% for list in all_lists %}
-    <a href="{% url 'groceries' list.name %}">
-      <p>{{ list.name }}</p>
-    </a>
+<div class="jumbotron">
+  <div class="container">
+    <br>
+    <h2>Create new list:</h2>
+      <form action="/list/" method="POST">
+        {% csrf_token %}
+        <br>
+        {{ list_form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-success" />
+      </form>
     
-  {% endfor %}
+  </div>
+</div>
 
-  </body>
-</html>
+
+  <div class="container">
+        <!-- Example row of columns -->
+    <div class="row">
+      <h2>Here are your lists:</h2>
+      <br>
+      <div class="list-group" >
+      {% for list in all_lists %}
+          <a href="{% url 'groceries' list.name %}" class="list-group-item">
+            <p>{{ list.name }}</p>
+          </a>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

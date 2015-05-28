@@ -1,58 +1,66 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
+  {% block content %}
 
-<head>
 
-  </head>
-  <body>
-  GROCERIES ARE HERE
-  <p>Create new groceries:</p>
-    <form action="/list/{{ list_obj.name }}/" method="POST">
-      {% csrf_token %}
-      {{ groceries_form.as_p }}
-      <input type="submit" value="Submit" />
-    </form>
-  <h2>Here are your groceries for {{ list_obj.name }}</h2>
+<div class="jumbotron">
+  <div class="container">
+        <!-- Example row of columns -->
+  <br>
+<h2><strong>Create new groceries:</strong></h2>
+<br>
+  <form action="/list/{{ list_obj.name }}/" method="POST">
+    {% csrf_token %}
+    {{ groceries_form.as_p }}
+    <input type="submit" value="Submit" class="btn btn-success btn-md" />
+  </form>
+</div>
+</div>
 
-  <table class="table table-hover" id="order-table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Measurement</th>
-            <th>Is bought</th>
-        </tr>
-    </thead>
+<div class="container">
+  <div class="row">
 
-    <tbody>
-        {% for grocery in groceries_for_list %}
+<h2>Here are your groceries for {{ list_obj.name }}</h2>
 
-        <tr>
-            <td>{{ forloop.counter }}</td>
+<table class="table table-hover" id="order-table">
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Measurement</th>
+          <th>Is bought</th>
+      </tr>
+  </thead>
 
-            <td>
-              {{ grocery.name }}
-            </td>
+  <tbody>
+      {% for grocery in groceries_for_list %}
 
-            <td>
-                {{ grocery.quantity }}
-            </td>
+      <tr>
+          <td>{{ forloop.counter }}</td>
 
-            <td>
-              {{ grocery.measurement }}
-            </td>
+          <td>
+            {{ grocery.name }}
+          </td>
 
-             <td>
-                <input type='checkbox' value="{{ grocery.is_bought }}" />
-             </td>
-        </tr>
+          <td>
+              {{ grocery.quantity }}
+          </td>
 
-        {% endfor %}
+          <td>
+            {{ grocery.measurement }}
+          </td>
+
+           <td>
+              <input type='checkbox' value="{{ grocery.is_bought }}" id="{{ grocery.id }}"/>
+           </td>
+      </tr>
+
+      {% endfor %}
+
     </tbody>
-  </table>
+    </table>
+  </div>
+</div>
 
-
-  </body>
-</html>
+{% endblock %}
