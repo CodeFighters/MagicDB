@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Magic Assistant</title>
-  </head>
+{%  extends '../../todo/templates/blog/base.html'  %}
+{%  block content %}
 
   <body>
     <h1>Magic Databases Online</h1>
@@ -14,17 +11,20 @@
 
     <form method="POST" action="{% url 'index' %}">
     {% csrf_token %}
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-      </div>
+    <div>
+      <span class="label label-primary">Username  </span><p>
+      <input type="text" class="textboxclass" placeholder="Put user name" name="username" />
+    </div>
+    <p>
+    <div>
+      <span class="label label-danger">Password  </span><p>
+      <input type="password" class="textboxclass" placeholder="Put password" name="password" />
+    </div>
 
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-      </div>
-
-      <input type="submit" value="Login" />
+      <input type="submit" class="btn btn-info" value="Login" />
     </form>
   </body>
 </html>
+{%endblock content%}
+
+

@@ -3,6 +3,7 @@ from django.http import HttpResponseBadRequest
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from todo.models import Post
 
 
 def main_logout(request):
@@ -31,6 +32,21 @@ def index(request):
 
 @login_required(login_url="index")
 def main(request):
+    username = request.user.username
+    user_id = request.user.id
+    total_tasks = Post.objects.all().filter(author_id=user_id)
+    completed_tasks = Post.objects.all().filter(author_id=user_id, status=1)
+
+    # print(username)
+    # print(id)
+    # print(total_tasks)
+    # print(completed_tasks)
+
+    # print(len(total_tasks))
+    # print(len(completed_tasks))
+    sum_total = len(total_tasks)
+    sum_completed = len(completed_tasks)
+    sum_pending = sum_total - sum_completed
     return render(request, "main.html", locals())
 
 
