@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from tvseries import views
+import tvseries.views
+import dbapp.views
 
 urlpatterns = [
+    url(r"^register/$", dbapp.views.register, name="register"),
+    url(r"^db/$", dbapp.views.index, name="index"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.index , name = "tvseries"),
+    url(r'^tvseries/$', tvseries.views.index, name="tvseries"),
 ]

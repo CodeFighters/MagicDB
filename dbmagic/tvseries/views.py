@@ -45,4 +45,4 @@ def index(request):
 
     #update_me("rado", "1", 1)
 
-    return render(request, "index.html", locals())
+    return render(request, "tv.html", locals())
