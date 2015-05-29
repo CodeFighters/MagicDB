@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 id="title">Add Table</h1>
+    <div>
+        <form method = "GET" action="{% url 'dt' %}">
+        {% csrf_token %}
+        	<h3>Name</h3>
+            <input type="text" name = "name" />
+            <h3>Column</h3>
+            <input type="text" name = "column" />
+            <h3>Text</h3>
+            <input type="text" name = "txt" />
+            <h3> <h3>
+            <input type = "submit" value = "add"/>
+        </form>
+    </div>
+
+{% endblock %}
